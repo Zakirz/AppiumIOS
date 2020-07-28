@@ -16,18 +16,19 @@ namespace AppiumIOSFramework.Core
         public AppiumOptions IOSCapability()
         {
             AppiumOptions options = new AppiumOptions();
-            options.AddAdditionalCapability("platformName", "iOS");
-            options.AddAdditionalCapability("waitForDeviceTimeout", 120000);
+            options.AddAdditionalCapability("platformName", DEVICE_PLATFORM_NAME);
+            options.AddAdditionalCapability("waitForDeviceTimeout", DEVICE_TIMEOUT);
             options.AddAdditionalCapability("derivedDataPath", DERIVED_DATA_PATH);
             options.AddAdditionalCapability("iosInstallPause", 10000);
             options.AddAdditionalCapability("usePrebuiltWDA", true);
-            options.AddAdditionalCapability("noReset", true);
+            options.AddAdditionalCapability("resetOnSessionStartOnly", true);
+            options.AddAdditionalCapability("autoAcceptAlerts", true);
             options.AddAdditionalCapability("deviceName", DEVICE_NAME);
-            options.AddAdditionalCapability("platformVersion", "14.0");
-            options.AddAdditionalCapability("automationName", "XCUITest");
+            options.AddAdditionalCapability("platformVersion", DEVICE_PLATFORM_VERSION);
+            options.AddAdditionalCapability("automationName", AUTOMATION_NAME);
             options.AddAdditionalCapability("udid", DEVICE_UDID);
-            options.AddAdditionalCapability("xCodeOrgId", "7AAC4DGPCP");
-            options.AddAdditionalCapability("xCodeSigningId", "iPhone Developer");
+            options.AddAdditionalCapability("xCodeOrgId", xCODE_TEAM_ID);
+            options.AddAdditionalCapability("xCodeSigningId", xCODE_SIGN_ID);
             options.AddAdditionalCapability("app", APP_PATH);
             return options;
         }
@@ -68,21 +69,6 @@ namespace AppiumIOSFramework.Core
                 driver.Quit();
                 Console.WriteLine("Driver Closed and Application Exited !!!");
             }
-        }
-
-        [Test]
-        public void TestStartApp()
-        {
-            var usernameLabel = driver.FindElementByAccessibilityId("Username");
-            var passwordLabel = driver.FindElementByAccessibilityId("Password");
-            bool usernameStatus = usernameLabel.Displayed;
-            bool passwordStatus = passwordLabel.Displayed;
-            var userTextBox = driver.FindElementByXPath("//XCUIElementTypeApplication[@name='KAM QA TEST']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeTextField");
-            var passwordTextBox = driver.FindElementByXPath("//XCUIElementTypeApplication[@name='KAM QA TEST']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeSecureTextField");
-            var loginButton = driver.FindElementByXPath("//XCUIElementTypeButton[@name='Login']");
-            userTextBox.SendKeys("txmdkam");
-            passwordTextBox.SendKeys("Tika@234");
-            loginButton.Click();
         }
     }
 }
