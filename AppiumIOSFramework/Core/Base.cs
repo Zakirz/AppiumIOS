@@ -21,7 +21,8 @@ namespace AppiumIOSFramework.Core
             options.AddAdditionalCapability("derivedDataPath", DERIVED_DATA_PATH);
             options.AddAdditionalCapability("iosInstallPause", 10000);
             options.AddAdditionalCapability("usePrebuiltWDA", true);
-            options.AddAdditionalCapability("noReset", true);
+            options.AddAdditionalCapability("resetOnSessionStartOnly", true);
+            options.AddAdditionalCapability("autoAcceptAlerts", true);
             options.AddAdditionalCapability("deviceName", DEVICE_NAME);
             options.AddAdditionalCapability("platformVersion", "14.0");
             options.AddAdditionalCapability("automationName", "XCUITest");
@@ -34,7 +35,8 @@ namespace AppiumIOSFramework.Core
 
         public Uri AppiumServerUrl()
         {
-            Uri url = new Uri(APPIUM_SERVER_HOST+":"+APPIUM_SERVER_PORT+"wd/hub");
+            String appium_server = APPIUM_SERVER_HOST+":"+APPIUM_SERVER_PORT+"/wd/hub";
+            Uri url = new Uri(appium_server);
             return url;
         }
 
