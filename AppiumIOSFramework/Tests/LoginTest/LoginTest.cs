@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using AppiumIOSFramework.Core;
+using NUnit.Framework;
 
 namespace AppiumIOSFramework.Tests.LoginTest
 {
-    public class LoginTest
+    [TestFixture]
+    public class LoginTest: Base
     {
         [Test]
         public void TestStartAppAndLogin()

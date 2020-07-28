@@ -7,38 +7,55 @@ using System.IO;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Service;
 
-namespace AppiumIOSFramework
+namespace AppiumIOSFramework.Core
 {
-    public class IOSAppTest
+    public class Base : Config
     {
         public static IOSDriver<IOSElement> driver;
-        AppiumOptions options = new AppiumOptions();
-        string testAppPath = Path.Combine("/Users/INDIUM/Downloads/KAM.test.qa.ipa");
 
-
-        [OneTimeSetUp]
-        public void SetupTest()
-        { 
+        public AppiumOptions IOSCapability()
+        {
+            AppiumOptions options = new AppiumOptions();
             options.AddAdditionalCapability("platformName", "iOS");
             options.AddAdditionalCapability("waitForDeviceTimeout", 120000);
-            options.AddAdditionalCapability("derivedDataPath", "/Users/INDIUM/Library/Developer/Xcode/DerivedData/WebDriverAgent-alwvnomvwrdtzoaxbbkniqrpcdpp");
+            options.AddAdditionalCapability("derivedDataPath", DERIVED_DATA_PATH);
             options.AddAdditionalCapability("iosInstallPause", 10000);
             options.AddAdditionalCapability("usePrebuiltWDA", true);
             options.AddAdditionalCapability("noReset", true);
-            options.AddAdditionalCapability("deviceName", "ISILPAD16");
+            options.AddAdditionalCapability("deviceName", DEVICE_NAME);
             options.AddAdditionalCapability("platformVersion", "14.0");
             options.AddAdditionalCapability("automationName", "XCUITest");
-            options.AddAdditionalCapability("udid", "2c326aa14c8d596509a090f6163c6a5a8e9a9090");
+            options.AddAdditionalCapability("udid", DEVICE_UDID);
             options.AddAdditionalCapability("xCodeOrgId", "7AAC4DGPCP");
             options.AddAdditionalCapability("xCodeSigningId", "iPhone Developer");
-            options.AddAdditionalCapability(MobileCapabilityType.App, testAppPath);
-            Uri url = new Uri("http://localhost:4723/wd/hub");
-            driver = new IOSDriver<IOSElement>(url, options, TimeSpan.FromMinutes(4));
+            options.AddAdditionalCapability("app", APP_PATH);
+            return options;
+        }
+
+        public Uri AppiumServerUrl()
+        {
+            Uri url = new Uri(APPIUM_SERVER_HOST+":"+APPIUM_SERVER_PORT+"wd/hub");
+            return url;
+        }
+
+        public IOSDriver<IOSElement> GetDriver()
+        {
+            Uri url = AppiumServerUrl();
+            AppiumOptions options = IOSCapability();
+            driver = new IOSDriver<IOSElement>(AppiumServerUrl(), options, TimeSpan.FromMinutes(4));
+            return driver;
+        }
+
+        [OneTimeSetUp]
+        public void InitiateDriver()
+        {
+            driver = GetDriver();
             driver.LaunchApp();
-            driver.Orientation = ScreenOrientation.Landscape;
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
             driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(30);
-            Console.WriteLine("Driver Got Connected Succesfully");
+            Console.WriteLine("Driver Initiated Succesfully");
+            driver.Orientation = ScreenOrientation.Landscape;
+            Console.WriteLine("Setting Device To Landscape Mode");
         }
 
         [OneTimeTearDown]
@@ -46,14 +63,15 @@ namespace AppiumIOSFramework
         {
             if (driver != null)
             {
-                Console.WriteLine("Test Completed and Driver Closed");
+                Console.WriteLine("Test Completed and Closing Driver");
                 driver.CloseApp();
                 driver.Quit();
+                Console.WriteLine("Driver Closed and Application Exited !!!");
             }
         }
 
         [Test]
-        public void TestStartAppAndLogin()
+        public void TestStartApp()
         {
             var usernameLabel = driver.FindElementByAccessibilityId("Username");
             var passwordLabel = driver.FindElementByAccessibilityId("Password");
@@ -66,5 +84,5 @@ namespace AppiumIOSFramework
             passwordTextBox.SendKeys("Tika@234");
             loginButton.Click();
         }
-    }    
+    }
 }
