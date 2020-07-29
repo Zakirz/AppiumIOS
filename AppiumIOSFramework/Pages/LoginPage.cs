@@ -20,4 +20,5 @@ namespace AppiumIOSFramework.Pages
             ClickOn(loginButton);
         }
     }
+    // updated
 }
