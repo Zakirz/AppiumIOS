@@ -1,8 +1,11 @@
 using System;
 using OpenQA.Selenium.Appium.iOS;
 using NUnit.Framework;
+using OpenQA.Selenium.Appium.Enums;
 using OpenQA.Selenium.Appium;
+using System.IO;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium.Service;
 
 namespace AppiumIOSFramework.Core
 {
@@ -32,7 +35,8 @@ namespace AppiumIOSFramework.Core
 
         public Uri AppiumServerUrl()
         {
-            Uri url = new Uri(APPIUM_SERVER_HOST+":"+APPIUM_SERVER_PORT+"wd/hub");
+            String appium_server = APPIUM_SERVER_HOST+":"+APPIUM_SERVER_PORT+"/wd/hub";
+            Uri url = new Uri(appium_server);
             return url;
         }
 
