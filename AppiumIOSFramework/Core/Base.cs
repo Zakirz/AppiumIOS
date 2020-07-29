@@ -1,11 +1,8 @@
 using System;
 using OpenQA.Selenium.Appium.iOS;
 using NUnit.Framework;
-using OpenQA.Selenium.Appium.Enums;
 using OpenQA.Selenium.Appium;
-using System.IO;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.Service;
 
 namespace AppiumIOSFramework.Core
 {
