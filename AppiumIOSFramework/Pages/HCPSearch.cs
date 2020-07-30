@@ -5,10 +5,10 @@ namespace AppiumIOSFramework.Pages
 {
     class HCPSearchPage:App
     {
-        public string SearchHCPBtn = "accessid###Image9273. This is a Link. ";
-        public string SearchHCPBtn = "accessid###Image9273. This is a Link. ";
-        public string SearchHCPBtn = "accessid###Image9273. This is a Link. ";
-        public string SearchHCPBtn = "accessid###Image9273. This is a Link. ";
+        public string firstNameTextBox = "accessid###Image9273. This is a Link. ";
+        public string lastNameTextBox = "accessid###Image9273. This is a Link. ";
+        public string cityTextBox = "accessid###Image9273. This is a Link. ";
+        public string anotherCityTextbox = "accessid###Image9273. This is a Link. ";
 
     }
 
