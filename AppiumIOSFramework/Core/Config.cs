@@ -7,6 +7,8 @@ namespace AppiumIOSFramework.Core
 {
     public class Config
     {
+        public string GLOBAL_USERNAME = "txmdkam";
+        public string GLOBAL_PASSWORD = "Tika@234";
         public string APP_PATH = Path.Combine("/Users/INDIUM/Downloads/KAM.test.qa.ipa");
         public string DEVICE_PLATFORM_NAME = "iOS";
         public string DEVICE_PLATFORM_VERSION = "14.0";

@@ -9,16 +9,12 @@ namespace AppiumIOSFramework.Tests.LoginTest
     {
             LoginPage loginPage = new LoginPage();
             HomeScreenPage homePage = new HomeScreenPage();
-            CRSummaryPage crSummaryPage = new CRSummaryPage();
-            HCPSearchPage hcpSearchPage = new HCPSearchPage();
 
         [Test]
-        public void TestStartAppAndLogin()
+        public void AppLogin()
         {
-            loginPage.LoginToApp("txmdkam", "Tika@234");
-            homePage.OpenDCMLInk();
-            Assert.IsTrue(crSummaryPage.SearchButtonDisplayed());
-            crSummaryPage.ClickSearch();            
+            loginPage.LoginToApp(GLOBAL_USERNAME, GLOBAL_PASSWORD);
+            Assert.IsTrue(homePage.HomePageDisplayed());
         }
     }
 }

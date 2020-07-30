@@ -11,5 +11,10 @@ namespace AppiumIOSFramework.Pages
         {
             ClickOn(DCMLink);
         }
+
+        public bool HomePageDisplayed()
+        {
+            return IsDisplayed(DCMLink);
+        }
     }
 }
