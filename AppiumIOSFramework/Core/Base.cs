@@ -3,10 +3,13 @@ using OpenQA.Selenium.Appium.iOS;
 using NUnit.Framework;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium;
+using AventStack.ExtentReports;
+using NUnit.Framework.Interfaces;
+using AventStack.ExtentReports.Reporter;
 
 namespace AppiumIOSFramework.Core
 {
-    public class Base : Config
+    public class Base : Reporter
     {
         public static IOSDriver<IOSElement> driver;
 

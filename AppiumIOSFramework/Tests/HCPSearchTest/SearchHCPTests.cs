@@ -13,7 +13,7 @@ namespace AppiumIOSFramework.Tests.HCPSearchTest
             HCPSearchPage hcpSearchPage = new HCPSearchPage();
 
         [Test]
-        public void TestStartAppAndLogin()
+        public void SearchHCPTest()
         {
             loginPage.LoginToApp(GLOBAL_USERNAME, GLOBAL_PASSWORD);
             homePage.OpenDCMLInk();
