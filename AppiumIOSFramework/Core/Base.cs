@@ -32,7 +32,7 @@ namespace AppiumIOSFramework.Core
 
         public Uri AppiumServerUrl()
         {
-            Uri url = new Uri(APPIUM_SERVER_HOST+":"+APPIUM_SERVER_PORT+"wd/hub");
+            Uri url = new Uri(APPIUM_SERVER_HOST+":"+APPIUM_SERVER_PORT+"/wd/hub");
             return url;
         }
 
